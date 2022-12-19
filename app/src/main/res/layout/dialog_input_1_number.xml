@@ -63,7 +63,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="10dp"
                 android:textColor="@color/orange_700"
-                android:text="* 0또는 5에서 36사이 숫자를 입력하세요."/>
+                android:text="* 5에서 36사이 숫자를 입력하세요."/>
 
         </LinearLayout>
 
@@ -77,13 +77,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:paddingHorizontal="20dp"
-                android:text="확인"/>
 
             <TextView
                 android:id="@+id/cancel"
@@ -91,8 +84,15 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="8dp"
                 android:paddingHorizontal="20dp"
+                android:text="0점"/>
+            <TextView
+                android:id="@+id/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="20dp"
                 android:layout_marginStart="10dp"
-                android:text="취소"/>
+                android:text="등록"/>
 
         </LinearLayout>
 

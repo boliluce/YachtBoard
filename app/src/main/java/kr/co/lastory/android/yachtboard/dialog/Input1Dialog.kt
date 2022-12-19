@@ -4,18 +4,17 @@ import android.app.Dialog
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kr.co.lastory.android.yachtboard.R
-import kr.co.lastory.android.yachtboard.databinding.DialogInputNumberBinding
+import kr.co.lastory.android.yachtboard.databinding.DialogInput1NumberBinding
 
-class InputDialog(private val context : AppCompatActivity) {
+class Input1Dialog(private val context : AppCompatActivity) {
 
-    private lateinit var binding : DialogInputNumberBinding
+    private lateinit var binding : DialogInput1NumberBinding
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
 
-    private lateinit var listener : MyDialogOKClickedListener
+    private lateinit var listener : MyDialogClickedListener
 
     fun show() {
-        binding = DialogInputNumberBinding.inflate(context.layoutInflater)
+        binding = DialogInput1NumberBinding.inflate(context.layoutInflater)
 
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dlg.setContentView(binding.root)     //다이얼로그에 사용할 xml 파일을 불러옴
@@ -28,7 +27,7 @@ class InputDialog(private val context : AppCompatActivity) {
             try {
                 val n = Integer.parseInt(binding.etNumber.text.toString())
 
-                if( n != 0 && ( 5 > n || n > 36 ) ) throw Exception()
+                if( 5 > n || n > 36 ) throw Exception()
 
                 listener.onOKClicked(n)
                 dlg.dismiss()
@@ -36,27 +35,34 @@ class InputDialog(private val context : AppCompatActivity) {
                 binding.etNumber.requestFocus()
                 binding.etNumber.selectAll()
 
-                Toast.makeText(context, "0또는 5에서 36사이의 숫자를 입력해주세요.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "5에서 36사이의 숫자를 입력해주세요.", Toast.LENGTH_LONG).show()
             }
         }
 
         //cancel 버튼 동작
         binding.cancel.setOnClickListener {
+            listener.onCancelClicked()
             dlg.dismiss()
         }
 
+        dlg.setCanceledOnTouchOutside(true)
         dlg.show()
     }
 
-    fun setOnOKClickedListener(listener: (Int) -> Unit) {
-        this.listener = object: MyDialogOKClickedListener {
+    fun setOnClickedListener(listener: (Int) -> Unit) {
+        this.listener = object: MyDialogClickedListener {
             override fun onOKClicked(content: Int) {
                 listener(content)
+            }
+            override fun onCancelClicked() {
+                listener(0)
             }
         }
     }
 
-    interface MyDialogOKClickedListener {
+    interface MyDialogClickedListener {
         fun onOKClicked(content : Int)
+        fun onCancelClicked()
     }
+
 }

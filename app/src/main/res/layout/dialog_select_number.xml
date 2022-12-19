@@ -35,20 +35,6 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/btn_number_0"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_toggle_background"
-                    android:textColor="@drawable/btn_toggle_text_color"
-                    android:button="@null"
-                    android:textAlignment="center"
-                    android:textSize="12dp"
-                    android:text="0점"
-                    android:checked="true" />
-
-                <RadioButton
                     android:id="@+id/btn_number_1"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -59,7 +45,8 @@
                     android:button="@null"
                     android:textAlignment="center"
                     android:textSize="12dp"
-                    android:text="0점" />
+                    android:text="0점"
+                    android:checked="true"/>
 
                 <RadioButton
                     android:id="@+id/btn_number_2"
@@ -126,21 +113,20 @@
                 android:layout_weight="1"/>
 
             <TextView
-                android:id="@+id/ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:paddingHorizontal="20dp"
-                android:text="확인"/>
-
-            <TextView
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingVertical="8dp"
                 android:paddingHorizontal="20dp"
+                android:text="0점"/>
+            <TextView
+                android:id="@+id/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="20dp"
                 android:layout_marginStart="10dp"
-                android:text="취소"/>
+                android:text="등록"/>
 
 
         </LinearLayout>

@@ -49,4 +49,8 @@ class MainViewModel(context: Context) : BaseViewModel() {
 
         _totalResult.postValue(totalInfo)
     }
+
+    fun savedInputDialogType(value : String){
+        MyApplication.prefs.setString(MyApplication.PREF_INPUT_DIALOG_TYPE, value)
+    }
 }

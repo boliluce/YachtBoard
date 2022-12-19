@@ -6,8 +6,7 @@ class MyApplication : Application() {
     companion object {
         lateinit var prefs: PrefUtil
 
-        const val BASE_URL = "base_url"
-        const val BASE_URL_SELECTED = "base_url_selected"
+        const val PREF_INPUT_DIALOG_TYPE = "PREF_INPUT_DIALOG_TYPE"
     }
 
     override fun onCreate() {

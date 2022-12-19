@@ -1,8 +1,7 @@
 package kr.co.lastory.android.yachtboard
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,8 +11,9 @@ import kr.co.lastory.android.yachtboard.common.MyApplication
 import kr.co.lastory.android.yachtboard.databinding.ActivityMainBinding
 import kr.co.lastory.android.yachtboard.databinding.LayoutScoreItemBinding
 import kr.co.lastory.android.yachtboard.databinding.LayoutScoreTotalItemBinding
-import kr.co.lastory.android.yachtboard.dialog.InputDialog
+import kr.co.lastory.android.yachtboard.dialog.Input1Dialog
 import kr.co.lastory.android.yachtboard.dialog.SelectDialog
+import kr.co.lastory.android.yachtboard.dialog.Input2Dialog
 
 
 class MainActivity : BaseActivity() {
@@ -24,15 +24,17 @@ class MainActivity : BaseActivity() {
         Input, Select
     }
 
+    private lateinit var inputDialogType : Array<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayShowTitleEnabled(false);
-        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
-        supportActionBar?.setCustomView(R.layout.layout_tool_bar);
+        inputDialogType = arrayOf("직접 입력 방식", "계산기 방식")
+
+        supportActionBar?.title = "점수판"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.scoreTwos.ivDice1.setImageResource(R.drawable.ic_dice_two)
         binding.scoreTwos.ivDice2.setImageResource(R.drawable.ic_dice_two)
@@ -165,6 +167,17 @@ class MainActivity : BaseActivity() {
 
                 return true
             }
+            R.id.menu_option -> {
+                AlertDialog.Builder(this).apply {
+                    setItems(inputDialogType) { _, i ->
+                        viewModel.savedInputDialogType(inputDialogType[i])
+                    }
+                }.show()
+            }
+            androidx.appcompat.R.id.home -> {
+                finish()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -198,34 +211,62 @@ class MainActivity : BaseActivity() {
                 if (text == "등록") {
                     if(type == DialogType.Select){
                         val dlg = SelectDialog(this@MainActivity)
-                        dlg.setOnOKClickedListener{ content ->
+                        dlg.setOnClickedListener{ content ->
                             background = resources.getDrawable(R.drawable.bg_round_rec_blue)
                             text = "${content}점"
                             viewModel.savedScore(item.tvDescriptionTitle.text.toString(), content)
                         }
                         dlg.show(num)
                     }else if(type == DialogType.Input && num == 0) {
-                        val dlg = InputDialog(this@MainActivity)
-                        dlg.setOnOKClickedListener{ content ->
-                            background = resources.getDrawable(R.drawable.bg_round_rec_blue)
-                            text = "${content}점"
-                            viewModel.savedScore(item.tvDescriptionTitle.text.toString(), content)
+                        if(MyApplication.prefs.getString(MyApplication.PREF_INPUT_DIALOG_TYPE,"직접 입력 방식") == "계산기 방식"){
+                            val dlg = Input2Dialog(this@MainActivity)
+                            dlg.setOnClickedListener{ content ->
+                                background = resources.getDrawable(R.drawable.bg_round_rec_blue)
+                                text = "${content}점"
+                                viewModel.savedScore(item.tvDescriptionTitle.text.toString(), content)
+                            }
+                            dlg.show()
+                        }else {
+                            val dlg = Input1Dialog(this@MainActivity)
+                            dlg.setOnClickedListener{ content ->
+                                background = resources.getDrawable(R.drawable.bg_round_rec_blue)
+                                text = "${content}점"
+                                viewModel.savedScore(item.tvDescriptionTitle.text.toString(), content)
+                            }
+                            dlg.show()
                         }
-                        dlg.show()
                     }else{
-                        background = resources.getDrawable(R.drawable.bg_round_rec_blue)
-                        text = "${num}점"
-                        viewModel.savedScore(item.tvDescriptionTitle.text.toString(), num)
+                        androidx.appcompat.app.AlertDialog.Builder(this@MainActivity)
+                            .setMessage("점수를 등록합니다.")
+                            .setPositiveButton("등록") { _, _ ->
+                                background = resources.getDrawable(R.drawable.bg_round_rec_blue)
+                                text = "${num}점"
+                                viewModel.savedScore(item.tvDescriptionTitle.text.toString(), num)
+                            }
+                            .setNegativeButton("0점") { _, _ ->
+                                background = resources.getDrawable(R.drawable.bg_round_rec_blue)
+                                text = "0점"
+                                viewModel.savedScore(item.tvDescriptionTitle.text.toString(), 0)
+                            }
+                            .create().show()
                     }
                 } else {
-                    var n = 0
-                    try {
-                        n = Integer.parseInt(text.toString().replace("점" ,""))
-                    }catch (e : Exception){}
-                    viewModel.savedScore(item.tvDescriptionTitle.text.toString(), n*-1)
+                    androidx.appcompat.app.AlertDialog.Builder(this@MainActivity)
+                        .setMessage("점수를 취소하시겠습니까?")
+                        .setPositiveButton("확인") { _, _ ->
+                            var n = 0
+                            try {
+                                n = Integer.parseInt(text.toString().replace("점" ,""))
+                            }catch (e : Exception){}
+                            viewModel.savedScore(item.tvDescriptionTitle.text.toString(), n*-1)
 
-                    background = resources.getDrawable(R.drawable.bg_round_rec_orange)
-                    text = "등록"
+                            background = resources.getDrawable(R.drawable.bg_round_rec_orange)
+                            text = "등록"
+                        }
+                        .setNegativeButton("취소") { dialogInterface, _ ->
+                            dialogInterface.dismiss()
+                        }
+                        .create().show()
                 }
             }
         }
