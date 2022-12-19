@@ -173,8 +173,10 @@ class MainActivity : BaseActivity() {
                         viewModel.savedInputDialogType(inputDialogType[i])
                     }
                 }.show()
+
+                return true
             }
-            androidx.appcompat.R.id.home -> {
+            android.R.id.home -> {
                 finish()
                 return true
             }
