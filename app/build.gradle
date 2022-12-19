@@ -25,6 +25,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def fileName = 'YachtBoard-' +
+                    variant.buildType.name + '-' +
+                    variant.versionName + '.apk'
+            output.outputFileName = fileName
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
