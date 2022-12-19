@@ -75,7 +75,7 @@ class MainActivity : BaseActivity() {
         binding.scoreSixes.tvDescriptionContents.text = "6이 나온 주사위 눈의 합"
 
         binding.scoreBonus.tvDescriptionTitle.text = "보너스"
-        binding.scoreBonus.tvDescriptionContents.text = "상단 항목의 합계가 63점 이상"
+        binding.scoreBonus.tvDescriptionContents.text = "상단 항목의 합계가 63점 이상일 때, 35점"
 
         binding.scoreSubTotal.tvDescriptionTitle.text = "상단 합계"
 
@@ -269,7 +269,7 @@ class MainActivity : BaseActivity() {
     private fun setScoreValue(item : LayoutScoreTotalItemBinding){
         item.apply {
             val num = MyApplication.prefs.getInt(tvDescriptionTitle.text.toString(),-1)
-            if(num != 0){
+            if(num != -1){
                 score.text = "${num}점"
             }else{
                 score.text = "0점"

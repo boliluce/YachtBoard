@@ -38,7 +38,7 @@ class MainViewModel(context: Context) : BaseViewModel() {
                 totalInfo.total += totalInfo.bonus
             }else if (totalInfo.bonus != 0 && totalInfo.subTotal < 63) {
                 totalInfo.bonus -= 35
-                totalInfo.total -= totalInfo.bonus
+                totalInfo.total -= 35
             }
         }
         totalInfo.total += value
