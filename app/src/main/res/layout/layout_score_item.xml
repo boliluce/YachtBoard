@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    android:paddingHorizontal="10dp">
+
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_dice_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dice_margin"
+            android:src="@drawable/ic_dice_one"/>
+        <ImageView
+            android:id="@+id/iv_dice_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dice_margin"
+            android:src="@drawable/ic_dice_one"/>
+        <ImageView
+            android:id="@+id/iv_dice_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dice_margin"
+            android:src="@drawable/ic_dice_one"/>
+        <ImageView
+            android:id="@+id/iv_dice_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dice_margin"
+            android:src="@drawable/ic_dice_one"/>
+        <ImageView
+            android:id="@+id/iv_dice_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dice_margin"
+            android:src="@drawable/ic_dice_one"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:text="Ones"/>
+
+        <TextView
+            android:id="@+id/tv_description_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="1이 나온 주사위 눈의 합"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/score"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_round_rec_orange"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        android:text="등록" />
+</LinearLayout>
