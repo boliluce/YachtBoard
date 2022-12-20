@@ -1,3 +1,55 @@
 <resources>
     <string name="app_name">YachtBoard</string>
+
+    <string name="toolbar_title_score_board">점수판</string>
+
+    <string name="title_description_ones">Ones</string>
+    <string name="title_description_twos">Twos</string>
+    <string name="title_description_threes">Threes</string>
+    <string name="title_description_fours">Fours</string>
+    <string name="title_description_fives">Fives</string>
+    <string name="title_description_sixes">Sixes</string>
+    <string name="title_description_choice">Choice</string>
+    <string name="title_description_4_of_a_kind">4OfAKind</string>
+    <string name="title_description_full_house">FullHouse</string>
+    <string name="title_description_small_straight">SmallStraight</string>
+    <string name="title_description_large_straight">LargeStraight</string>
+    <string name="title_description_yacht">Yacht</string>
+    <string name="title_description_bonus">보너스</string>
+    <string name="title_description_sub_total">상단 합계</string>
+    <string name="title_description_total">총합</string>
+
+
+    <string name="contents_description_ones">1이 나온 주사위 눈의 합</string>
+    <string name="contents_description_twos">2가 나온 주사위 눈의 합</string>
+    <string name="contents_description_threes">3이 나온 주사위 눈의 합</string>
+    <string name="contents_description_fours">4가 나온 주사위 눈의 합</string>
+    <string name="contents_description_fives">5가 나온 주사위 눈의 합</string>
+    <string name="contents_description_sixes">6이 나온 주사위 눈의 합</string>
+    <string name="contents_description_choice">주사위 5개 눈의 총 합</string>
+    <string name="contents_description_4_of_a_kind">주사위 4개 눈이 같을 때, 주사위 5개의 합</string>
+    <string name="contents_description_full_house">동일한 눈의 주사위가 3,2개 일 때, 주사위 5개의 합</string>
+    <string name="contents_description_small_straight">주사위 4개의 눈이 연속할 때, 15점</string>
+    <string name="contents_description_large_straight">주사위 5개의 눈이 연속할 때, 30점</string>
+    <string name="contents_description_yacht">주사위 5개 눈이 모두 같을 때, 50점</string>
+    <string name="contents_description_bonus">상단 항목의 합계가 63점 이상일 때, 35점</string>
+    <string name="contents_description_sub_total"></string>
+    <string name="contents_description_total"></string>
+
+    <string name="dialog_message_registry">점수를 등록합니다</string>
+    <string name="dialog_message_reset">초기화 하시겠습니까?</string>
+    <string name="dialog_message_cancel_registration">등록을 취소 하시겠습니까?</string>
+
+    <string name="toast_message_reset">초기화 되었습니다</string>
+
+    <string name="warning_message_number_range_30">5에서 30사이 숫자를 입력해주세요</string>
+    <string name="warning_message_number_range_6">1에서 6사이 숫자를 입력해주세요</string>
+
+    <string name="btn_registration">등록</string>
+
+    <string name="dialog_btn_ok">확인</string>
+    <string name="dialog_btn_cancel">취소</string>
+    <string name="dialog_title_input_number">점수를 입력해주세요</string>
+    <string name="dialog_title_select_number">점수를 선택해주세요</string>
+
 </resources>

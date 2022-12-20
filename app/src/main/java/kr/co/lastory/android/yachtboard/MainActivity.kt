@@ -1,12 +1,12 @@
 package kr.co.lastory.android.yachtboard
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.ActionBar
 import kr.co.lastory.android.yachtboard.common.MyApplication
 import kr.co.lastory.android.yachtboard.databinding.ActivityMainBinding
 import kr.co.lastory.android.yachtboard.databinding.LayoutScoreItemBinding
@@ -33,103 +33,106 @@ class MainActivity : BaseActivity() {
 
         inputDialogType = arrayOf("직접 입력 방식", "계산기 방식")
 
-        supportActionBar?.title = "점수판"
+        supportActionBar?.title = resources.getString(R.string.toolbar_title_score_board)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.scoreOnes.tvDescriptionTitle.text = resources.getString(R.string.title_description_ones)
+        binding.scoreOnes.tvDescriptionContents.text = resources.getString(R.string.contents_description_ones)
 
         binding.scoreTwos.ivDice1.setImageResource(R.drawable.ic_dice_two)
         binding.scoreTwos.ivDice2.setImageResource(R.drawable.ic_dice_two)
         binding.scoreTwos.ivDice3.setImageResource(R.drawable.ic_dice_two)
         binding.scoreTwos.ivDice4.setImageResource(R.drawable.ic_dice_two)
         binding.scoreTwos.ivDice5.setImageResource(R.drawable.ic_dice_two)
-        binding.scoreTwos.tvDescriptionTitle.text = "Twos"
-        binding.scoreTwos.tvDescriptionContents.text = "2가 나온 주사위 눈의 합"
+        binding.scoreTwos.tvDescriptionTitle.text = resources.getString(R.string.title_description_twos)
+        binding.scoreTwos.tvDescriptionContents.text = resources.getString(R.string.contents_description_twos)
 
         binding.scoreThrees.ivDice1.setImageResource(R.drawable.ic_dice_three)
         binding.scoreThrees.ivDice2.setImageResource(R.drawable.ic_dice_three)
         binding.scoreThrees.ivDice3.setImageResource(R.drawable.ic_dice_three)
         binding.scoreThrees.ivDice4.setImageResource(R.drawable.ic_dice_three)
         binding.scoreThrees.ivDice5.setImageResource(R.drawable.ic_dice_three)
-        binding.scoreThrees.tvDescriptionTitle.text = "Threes"
-        binding.scoreThrees.tvDescriptionContents.text = "3이 나온 주사위 눈의 합"
+        binding.scoreThrees.tvDescriptionTitle.text = resources.getString(R.string.title_description_threes)
+        binding.scoreThrees.tvDescriptionContents.text = resources.getString(R.string.contents_description_threes)
 
         binding.scoreFours.ivDice1.setImageResource(R.drawable.ic_dice_four)
         binding.scoreFours.ivDice2.setImageResource(R.drawable.ic_dice_four)
         binding.scoreFours.ivDice3.setImageResource(R.drawable.ic_dice_four)
         binding.scoreFours.ivDice4.setImageResource(R.drawable.ic_dice_four)
         binding.scoreFours.ivDice5.setImageResource(R.drawable.ic_dice_four)
-        binding.scoreFours.tvDescriptionTitle.text = "Fours"
-        binding.scoreFours.tvDescriptionContents.text = "4가 나온 주사위 눈의 합"
+        binding.scoreFours.tvDescriptionTitle.text = resources.getString(R.string.title_description_fours)
+        binding.scoreFours.tvDescriptionContents.text = resources.getString(R.string.contents_description_fours)
 
         binding.scoreFives.ivDice1.setImageResource(R.drawable.ic_dice_five)
         binding.scoreFives.ivDice2.setImageResource(R.drawable.ic_dice_five)
         binding.scoreFives.ivDice3.setImageResource(R.drawable.ic_dice_five)
         binding.scoreFives.ivDice4.setImageResource(R.drawable.ic_dice_five)
         binding.scoreFives.ivDice5.setImageResource(R.drawable.ic_dice_five)
-        binding.scoreFives.tvDescriptionTitle .text = "Fives"
-        binding.scoreFives.tvDescriptionContents.text = "5가 나온 주사위 눈의 합"
+        binding.scoreFives.tvDescriptionTitle .text = resources.getString(R.string.title_description_fives)
+        binding.scoreFives.tvDescriptionContents.text = resources.getString(R.string.contents_description_fives)
 
         binding.scoreSixes.ivDice1.setImageResource(R.drawable.ic_dice_six)
         binding.scoreSixes.ivDice2.setImageResource(R.drawable.ic_dice_six)
         binding.scoreSixes.ivDice3.setImageResource(R.drawable.ic_dice_six)
         binding.scoreSixes.ivDice4.setImageResource(R.drawable.ic_dice_six)
         binding.scoreSixes.ivDice5.setImageResource(R.drawable.ic_dice_six)
-        binding.scoreSixes.tvDescriptionTitle .text = "Sixes"
-        binding.scoreSixes.tvDescriptionContents.text = "6이 나온 주사위 눈의 합"
+        binding.scoreSixes.tvDescriptionTitle .text = resources.getString(R.string.title_description_sixes)
+        binding.scoreSixes.tvDescriptionContents.text = resources.getString(R.string.contents_description_sixes)
 
-        binding.scoreBonus.tvDescriptionTitle.text = "보너스"
-        binding.scoreBonus.tvDescriptionContents.text = "상단 항목의 합계가 63점 이상일 때, 35점"
+        binding.scoreBonus.tvDescriptionTitle.text = resources.getString(R.string.title_description_bonus)
+        binding.scoreBonus.tvDescriptionContents.text = resources.getString(R.string.contents_description_bonus)
 
-        binding.scoreSubTotal.tvDescriptionTitle.text = "상단 합계"
+        binding.scoreSubTotal.tvDescriptionTitle.text = resources.getString(R.string.title_description_sub_total)
 
         binding.scoreChoice.ivDice1.setImageResource(R.drawable.ic_dice_four)
         binding.scoreChoice.ivDice2.setImageResource(R.drawable.ic_dice_four)
         binding.scoreChoice.ivDice3.setImageResource(R.drawable.ic_dice_four)
         binding.scoreChoice.ivDice4.setImageResource(R.drawable.ic_dice_five)
         binding.scoreChoice.ivDice5.setImageResource(R.drawable.ic_dice_six)
-        binding.scoreChoice.tvDescriptionTitle.text = "Choice"
-        binding.scoreChoice.tvDescriptionContents.text = "주사위 5개 눈의 총 합"
+        binding.scoreChoice.tvDescriptionTitle.text = resources.getString(R.string.title_description_choice)
+        binding.scoreChoice.tvDescriptionContents.text = resources.getString(R.string.contents_description_choice)
 
         binding.score4OfAKind.ivDice1.setImageResource(R.drawable.ic_dice_three)
         binding.score4OfAKind.ivDice2.setImageResource(R.drawable.ic_dice_three)
         binding.score4OfAKind.ivDice3.setImageResource(R.drawable.ic_dice_three)
         binding.score4OfAKind.ivDice4.setImageResource(R.drawable.ic_dice_three)
         binding.score4OfAKind.ivDice5.setImageResource(R.drawable.ic_dice_five)
-        binding.score4OfAKind.tvDescriptionTitle.text = "4 of a Kind"
-        binding.score4OfAKind.tvDescriptionContents.text = "주사위 4개 눈이 같을 때, 주사위 5개의 합"
+        binding.score4OfAKind.tvDescriptionTitle.text = resources.getString(R.string.title_description_4_of_a_kind)
+        binding.score4OfAKind.tvDescriptionContents.text = resources.getString(R.string.contents_description_4_of_a_kind)
 
         binding.scoreFullHouse.ivDice1.setImageResource(R.drawable.ic_dice_three)
         binding.scoreFullHouse.ivDice2.setImageResource(R.drawable.ic_dice_three)
         binding.scoreFullHouse.ivDice3.setImageResource(R.drawable.ic_dice_three)
         binding.scoreFullHouse.ivDice4.setImageResource(R.drawable.ic_dice_five)
         binding.scoreFullHouse.ivDice5.setImageResource(R.drawable.ic_dice_five)
-        binding.scoreFullHouse.tvDescriptionTitle.text = "Full House"
-        binding.scoreFullHouse.tvDescriptionContents.text = "동일한 눈의 주사위가 3,2개 일 때, 주사위 5개의 합"
+        binding.scoreFullHouse.tvDescriptionTitle.text = resources.getString(R.string.title_description_full_house)
+        binding.scoreFullHouse.tvDescriptionContents.text = resources.getString(R.string.contents_description_full_house)
 
         binding.scoreSmallStraight.ivDice1.setImageResource(R.drawable.ic_dice_one)
         binding.scoreSmallStraight.ivDice2.setImageResource(R.drawable.ic_dice_two)
         binding.scoreSmallStraight.ivDice3.setImageResource(R.drawable.ic_dice_three)
         binding.scoreSmallStraight.ivDice4.setImageResource(R.drawable.ic_dice_four)
         binding.scoreSmallStraight.ivDice5.setImageResource(R.drawable.ic_dice_six)
-        binding.scoreSmallStraight.tvDescriptionTitle.text = "S.Straight"
-        binding.scoreSmallStraight.tvDescriptionContents.text = "주사위 4개의 눈이 연속할 때, 15점"
+        binding.scoreSmallStraight.tvDescriptionTitle.text = resources.getString(R.string.title_description_small_straight)
+        binding.scoreSmallStraight.tvDescriptionContents.text = resources.getString(R.string.contents_description_small_straight)
 
         binding.scoreLargeStraight.ivDice1.setImageResource(R.drawable.ic_dice_two)
         binding.scoreLargeStraight.ivDice2.setImageResource(R.drawable.ic_dice_three)
         binding.scoreLargeStraight.ivDice3.setImageResource(R.drawable.ic_dice_four)
         binding.scoreLargeStraight.ivDice4.setImageResource(R.drawable.ic_dice_five)
         binding.scoreLargeStraight.ivDice5.setImageResource(R.drawable.ic_dice_six)
-        binding.scoreLargeStraight.tvDescriptionTitle.text = "L.Straight"
-        binding.scoreLargeStraight.tvDescriptionContents.text = "주사위 4개의 눈이 연속할 때, 30점"
+        binding.scoreLargeStraight.tvDescriptionTitle.text = resources.getString(R.string.title_description_large_straight)
+        binding.scoreLargeStraight.tvDescriptionContents.text = resources.getString(R.string.contents_description_large_straight)
 
         binding.scoreYacht.ivDice1.setImageResource(R.drawable.ic_dice_four)
         binding.scoreYacht.ivDice2.setImageResource(R.drawable.ic_dice_four)
         binding.scoreYacht.ivDice3.setImageResource(R.drawable.ic_dice_four)
         binding.scoreYacht.ivDice4.setImageResource(R.drawable.ic_dice_four)
         binding.scoreYacht.ivDice5.setImageResource(R.drawable.ic_dice_four)
-        binding.scoreYacht.tvDescriptionTitle.text = "Yacht"
-        binding.scoreYacht.tvDescriptionContents.text = "주사위 5개 눈이 모두 같을 때, 50점"
+        binding.scoreYacht.tvDescriptionTitle.text = resources.getString(R.string.title_description_yacht)
+        binding.scoreYacht.tvDescriptionContents.text = resources.getString(R.string.contents_description_yacht)
 
-        binding.scoreTotal.tvDescriptionTitle.text = "총합"
+        binding.scoreTotal.tvDescriptionTitle.text = resources.getString(R.string.title_description_total)
 
         setScore(binding.scoreOnes, DialogType.Select,1)
         setScore(binding.scoreTwos, DialogType.Select,2)
@@ -163,8 +166,9 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.menu_reset -> {
-                resetAll()
-
+                showCustomDialog(resources.getString(R.string.dialog_message_reset)) { _, _ ->
+                    resetAll()
+                }
                 return true
             }
             R.id.menu_option -> {
@@ -204,13 +208,13 @@ class MainActivity : BaseActivity() {
 
         loadValue()
 
-        Toast.makeText(this, "초기화 되었습니다", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, R.string.toast_message_reset, Toast.LENGTH_SHORT).show()
     }
 
     private fun setScore(item : LayoutScoreItemBinding, type : DialogType, num : Int) {
         item.score.apply {
             setOnClickListener {
-                if (text == "등록") {
+                if (text == resources.getString(R.string.btn_registration)) {
                     if(type == DialogType.Select){
                         val dlg = SelectDialog(this@MainActivity)
                         dlg.setOnClickedListener{ content ->
@@ -238,9 +242,9 @@ class MainActivity : BaseActivity() {
                             dlg.show()
                         }
                     }else{
-                        androidx.appcompat.app.AlertDialog.Builder(this@MainActivity)
-                            .setMessage("점수를 등록합니다.")
-                            .setPositiveButton("등록") { _, _ ->
+                        AlertDialog.Builder(this@MainActivity)
+                            .setMessage(resources.getString(R.string.dialog_message_registry))
+                            .setPositiveButton(resources.getString(R.string.btn_registration)) { _, _ ->
                                 background = resources.getDrawable(R.drawable.bg_round_rec_blue)
                                 text = "${num}점"
                                 viewModel.savedScore(item.tvDescriptionTitle.text.toString(), num)
@@ -253,22 +257,15 @@ class MainActivity : BaseActivity() {
                             .create().show()
                     }
                 } else {
-                    androidx.appcompat.app.AlertDialog.Builder(this@MainActivity)
-                        .setMessage("점수를 취소하시겠습니까?")
-                        .setPositiveButton("확인") { _, _ ->
-                            var n = 0
-                            try {
-                                n = Integer.parseInt(text.toString().replace("점" ,""))
-                            }catch (e : Exception){}
-                            viewModel.savedScore(item.tvDescriptionTitle.text.toString(), n*-1)
-
-                            background = resources.getDrawable(R.drawable.bg_round_rec_orange)
-                            text = "등록"
-                        }
-                        .setNegativeButton("취소") { dialogInterface, _ ->
-                            dialogInterface.dismiss()
-                        }
-                        .create().show()
+                    showCustomDialog(resources.getString(R.string.dialog_message_cancel_registration)) { _, _ ->
+                        var n = 0
+                        try {
+                            n = Integer.parseInt(text.toString().replace("점" ,""))
+                        }catch (e : Exception){}
+                        viewModel.savedScore(item.tvDescriptionTitle.text.toString(), n*-1)
+                        background = resources.getDrawable(R.drawable.bg_round_rec_orange)
+                        text = resources.getString(R.string.btn_registration)
+                    }
                 }
             }
         }
@@ -304,7 +301,7 @@ class MainActivity : BaseActivity() {
                 score.text = "${num}점"
             }else{
                 score.background = resources.getDrawable(R.drawable.bg_round_rec_orange)
-                score.text = "등록"
+                score.text = resources.getString(R.string.btn_registration)
             }
         }
     }
@@ -318,6 +315,16 @@ class MainActivity : BaseActivity() {
                 score.text = "0점"
             }
         }
+    }
+
+    private fun showCustomDialog(title: String, listener : DialogInterface.OnClickListener){
+        AlertDialog.Builder(this@MainActivity)
+            .setMessage(title)
+            .setPositiveButton(R.string.dialog_btn_ok, listener)
+            .setNegativeButton(R.string.dialog_btn_cancel) { dialogInterface, _ ->
+                dialogInterface.dismiss()
+            }
+            .create().show()
     }
 
 }

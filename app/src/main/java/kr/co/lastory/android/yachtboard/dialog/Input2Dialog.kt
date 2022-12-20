@@ -1,11 +1,19 @@
 package kr.co.lastory.android.yachtboard.dialog
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.view.Window
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.widget.doAfterTextChanged
+import kr.co.lastory.android.yachtboard.R
 import kr.co.lastory.android.yachtboard.databinding.DialogInput2NumberBinding
+
 
 class Input2Dialog(private val context : AppCompatActivity) {
 
@@ -18,6 +26,12 @@ class Input2Dialog(private val context : AppCompatActivity) {
 
     fun show() {
         binding = DialogInput2NumberBinding.inflate(context.layoutInflater)
+
+        binding.etNumber1.doAfterTextChanged { sumInput() }
+        binding.etNumber2.doAfterTextChanged { sumInput() }
+        binding.etNumber3.doAfterTextChanged { sumInput() }
+        binding.etNumber4.doAfterTextChanged { sumInput() }
+        binding.etNumber5.doAfterTextChanged { sumInput() }
 
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dlg.setContentView(binding.root)     //다이얼로그에 사용할 xml 파일을 불러옴
@@ -46,7 +60,9 @@ class Input2Dialog(private val context : AppCompatActivity) {
                 edit.requestFocus()
                 edit.selectAll()
 
-                Toast.makeText(context, "1에서 6사이의 숫자를 입력해주세요.", Toast.LENGTH_LONG).show()
+                val manager: InputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                manager.showSoftInput(edit, InputMethodManager.SHOW_IMPLICIT)
+                Toast.makeText(context, R.string.warning_message_number_range_6, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -73,6 +89,17 @@ class Input2Dialog(private val context : AppCompatActivity) {
     interface MyDialogClickedListener {
         fun onOKClicked(content : Int)
         fun onCancelClicked()
+    }
+
+    private fun sumInput() {
+        var sum = 0
+        for(btn in btnArray){
+            try{
+                sum += Integer.parseInt(btn.text.toString())
+            }catch (e : Exception){ }
+        }
+
+        binding.tvSum.text = "$sum"
     }
 
 }

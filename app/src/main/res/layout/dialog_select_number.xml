@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="16dp"
-            android:text="점수를 선택해주세요."/>
+            android:text="@string/dialog_title_select_number"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                 android:paddingVertical="8dp"
                 android:paddingHorizontal="20dp"
                 android:layout_marginStart="10dp"
-                android:text="등록"/>
+                android:text="@string/btn_registration"/>
 
 
         </LinearLayout>

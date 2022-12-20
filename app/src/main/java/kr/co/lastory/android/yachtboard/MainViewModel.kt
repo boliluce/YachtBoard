@@ -9,12 +9,18 @@ import kr.co.lastory.android.yachtboard.data.TotalInfo
 
 class MainViewModel(context: Context) : BaseViewModel() {
 
-    private val topList = arrayOf( "Ones", "Twos", "Threes", "Fours", "Fives", "Sixes" )
-    private val bottomList = arrayOf( "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yacht" )
+    private val topList = arrayOf(
+        context.resources.getString(R.string.title_description_ones),
+        context.resources.getString(R.string.title_description_twos),
+        context.resources.getString(R.string.title_description_threes),
+        context.resources.getString(R.string.title_description_fours),
+        context.resources.getString(R.string.title_description_fives),
+        context.resources.getString(R.string.title_description_sixes)
+    )
 
-    private val PREF_BONUS = "보너스"
-    private val PREF_SUB_TOTAL = "상단 합계"
-    private val PREF_TOTAL = "총합"
+    private val PREF_BONUS = context.resources.getString(R.string.title_description_bonus)
+    private val PREF_SUB_TOTAL = context.resources.getString(R.string.title_description_sub_total)
+    private val PREF_TOTAL = context.resources.getString(R.string.title_description_total)
 
     private val totalInfo = TotalInfo()
 
@@ -28,7 +34,10 @@ class MainViewModel(context: Context) : BaseViewModel() {
     }
 
     fun savedScore(key : String, value : Int){
-        MyApplication.prefs.setInt(key, value)
+        if(value > 0)
+            MyApplication.prefs.setInt(key, value)
+        else
+            MyApplication.prefs.setInt(key, -1)
 
         if(topList.contains(key)) {
             totalInfo.subTotal += value

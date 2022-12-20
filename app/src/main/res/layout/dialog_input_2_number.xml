@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="16dp"
-            android:text="점수를 입력해주세요."/>
+            android:text="@string/dialog_title_input_number"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -156,6 +156,29 @@
                     android:textColorHint="#ddd"
                     android:textColor="@color/black"
                     android:textSize="16dp"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="16dp"
+                    android:text="="/>
+
+                <TextView
+                    android:id="@+id/tv_sum"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingVertical="5dp"
+                    android:longClickable="false"
+                    android:gravity="center"
+                    android:textColorHint="#ddd"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:text="0"/>
             </LinearLayout>
 
             <TextView
@@ -164,7 +187,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="10dp"
                 android:textColor="@color/orange_700"
-                android:text="* 1에서 6사이 숫자를 입력하세요."/>
+                android:text="@string/warning_message_number_range_6"/>
 
         </LinearLayout>
 
@@ -193,7 +216,7 @@
                 android:paddingVertical="8dp"
                 android:paddingHorizontal="20dp"
                 android:layout_marginStart="10dp"
-                android:text="등록"/>
+                android:text="@string/btn_registration"/>
         </LinearLayout>
 
 

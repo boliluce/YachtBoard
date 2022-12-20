@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kr.co.lastory.android.yachtboard.R
 import kr.co.lastory.android.yachtboard.databinding.DialogInput1NumberBinding
 
 class Input1Dialog(private val context : AppCompatActivity) {
@@ -27,7 +28,7 @@ class Input1Dialog(private val context : AppCompatActivity) {
             try {
                 val n = Integer.parseInt(binding.etNumber.text.toString())
 
-                if( 5 > n || n > 36 ) throw Exception()
+                if( 5 > n || n > 30 ) throw Exception()
 
                 listener.onOKClicked(n)
                 dlg.dismiss()
@@ -35,7 +36,7 @@ class Input1Dialog(private val context : AppCompatActivity) {
                 binding.etNumber.requestFocus()
                 binding.etNumber.selectAll()
 
-                Toast.makeText(context, "5에서 36사이의 숫자를 입력해주세요.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, R.string.warning_message_number_range_30, Toast.LENGTH_SHORT).show()
             }
         }
 
